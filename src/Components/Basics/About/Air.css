@@ -1,0 +1,19 @@
+@keyframes planeFly {
+  0% { 
+    left: -100px; 
+    transform: translateY(100px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(0px) rotate(-7deg); 
+  }
+  100% { 
+    left: 100%; 
+    transform: translateY(-50px) rotate(-12deg); 
+  }
+}
+
+.animate-planeFly {
+  position: absolute; 
+  bottom: 0;          
+  animation: planeFly 3s linear infinite;
+}
