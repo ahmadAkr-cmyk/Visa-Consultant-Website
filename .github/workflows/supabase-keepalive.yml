@@ -1,0 +1,26 @@
+name: Supabase Keep-Alive
+
+on:
+  schedule:
+    - cron: '0 6 * * 0,3'
+  workflow_dispatch:
+
+jobs:
+  ping-projects:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping VisaWeb Supabase
+        continue-on-error: true
+        run: |
+          curl -s -o /dev/null -w "VisaWeb status: %{http_code}\n" \
+            "${{ secrets.VISAWEB_SUPABASE_URL }}/rest/v1/messages?select=id&limit=1" \
+            -H "apikey: ${{ secrets.VISAWEB_SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.VISAWEB_SUPABASE_ANON_KEY }}"
+
+      - name: Ping Crucheeze Supabase
+        continue-on-error: true
+        run: |
+          curl -s -o /dev/null -w "Crucheeze status: %{http_code}\n" \
+            "${{ secrets.CRUCHEEZE_SUPABASE_URL }}/rest/v1/" \
+            -H "apikey: ${{ secrets.CRUCHEEZE_SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.CRUCHEEZE_SUPABASE_ANON_KEY }}"
