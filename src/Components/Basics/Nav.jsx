@@ -17,26 +17,24 @@ const Nav = () => {
       : 'block px-4 py-2 rounded hover:bg-gray-200';
 
   return (
-    <>
+    <div className="sticky top-0 z-50">
       {/* Top Info Bar */}
       <div className="bg-blue-950 text-white h-9 flex items-center justify-between px-2 sm:px-4 text-xs sm:text-sm">
-        <ul className="flex items-center w-full">
-          {/* Mobile: only symbols */}
-          <li className="sm:hidden flex-1 text-center"><FaMapMarkerAlt className="inline text-red-500" /></li>
-          <a href='tel:+923214244140 ' rel="noopener noreferrer" className="sm:hidden flex-1 text-center"><FaPhoneAlt className="inline text-green-400" /></a>
-          <a href='mailto:info@sirconsultant.com' rel="noopener noreferrer" className="sm:hidden flex-1 text-center"><FaEnvelope className="inline text-white" /></a>
+          {/* Mobile: only icons */}
+          <a href="https://maps.google.com/?q=15-A+Hajvery+Centre+Queens+Road+Lahore" target="_blank" rel="noopener noreferrer" className="sm:hidden flex-1 flex justify-center text-red-500"><FaMapMarkerAlt /></a>
+          <a href='tel:+923214244140' rel="noopener noreferrer" className="sm:hidden flex-1 flex justify-center text-green-400"><FaPhoneAlt /></a>
+          <a href='mailto:info@sirconsultant.com' rel="noopener noreferrer" className="sm:hidden flex-1 flex justify-center text-white"><FaEnvelope /></a>
 
           {/* Desktop: full text */}
-          <li className="hidden sm:flex flex-1 items-center gap-2 justify-start text-gray-200">
+          <div className="hidden sm:flex flex-1 items-center gap-2 justify-start text-gray-200">
             <FaMapMarkerAlt className="text-red-500" /> 15-A Hajvery Centre Queens Road Lahore
-          </li>
+          </div>
           <a href='tel:+923214244140' rel="noopener noreferrer" className="hidden sm:flex flex-1 items-center gap-2 justify-center text-gray-200 hover:text-white transition-colors">
             <FaPhoneAlt className="text-green-400" /> Call : +92 321 4244140
           </a>
           <a href='mailto:info@sirconsultant.com' rel="noopener noreferrer" className="hidden sm:flex flex-1 items-center gap-2 justify-end text-gray-200 hover:text-white transition-colors">
             <FaEnvelope className="text-white" /> info@sirconsultant.com
           </a>
-        </ul>
       </div>
 
       {/* Main Navbar */}
@@ -107,7 +105,7 @@ const Nav = () => {
           </ul>
         )}
       </nav>
-    </>
+    </div>
   );
 };
 
