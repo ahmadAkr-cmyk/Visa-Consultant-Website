@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
 
 const Nav = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -7,8 +8,8 @@ const Nav = () => {
   // Function to generate classes for links
   const desktopLinkClass = ({ isActive }) =>
     isActive
-      ? 'hover:text-gray-200 text-green-500 font-semibold'
-      : 'hover:text-gray-200';
+      ? 'relative text-white font-bold tracking-wide after:content-[""] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-white after:transition-all after:duration-300'
+      : 'relative text-gray-200 font-medium tracking-wide hover:text-white after:content-[""] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-white hover:after:w-full after:transition-all after:duration-300';
 
   const mobileLinkClass = ({ isActive }) =>
     isActive
@@ -19,21 +20,21 @@ const Nav = () => {
     <>
       {/* Top Info Bar */}
       <div className="bg-blue-950 text-white h-9 flex items-center justify-between px-2 sm:px-4 text-xs sm:text-sm">
-        <ul className="flex items-center justify-between w-full">
+        <ul className="flex items-center w-full">
           {/* Mobile: only symbols */}
-          <li className="sm:hidden flex-1 text-center">📍</li>
-          <a href='tel:+923214244140 ' rel="noopener noreferrer" className="sm:hidden flex-1 text-center">📞</a>
-          <a href='mailto:info@sirconsultant.com' rel="noopener noreferrer" className="sm:hidden flex-1 text-center">✉️</a>
+          <li className="sm:hidden flex-1 text-center"><FaMapMarkerAlt className="inline text-red-500" /></li>
+          <a href='tel:+923214244140 ' rel="noopener noreferrer" className="sm:hidden flex-1 text-center"><FaPhoneAlt className="inline text-green-400" /></a>
+          <a href='mailto:info@sirconsultant.com' rel="noopener noreferrer" className="sm:hidden flex-1 text-center"><FaEnvelope className="inline text-white" /></a>
 
           {/* Desktop: full text */}
-          <li className="hidden sm:block">
-            📍 15-A Hajvery Centre Queens Road Lahore
+          <li className="hidden sm:flex flex-1 items-center gap-2 justify-start text-gray-200">
+            <FaMapMarkerAlt className="text-red-500" /> 15-A Hajvery Centre Queens Road Lahore
           </li>
-          <a href='tel:+923214244140' rel="noopener noreferrer" className="hidden sm:block">
-            📞 Call : +92 321 4244140
+          <a href='tel:+923214244140' rel="noopener noreferrer" className="hidden sm:flex flex-1 items-center gap-2 justify-center text-gray-200 hover:text-white transition-colors">
+            <FaPhoneAlt className="text-green-400" /> Call : +92 321 4244140
           </a>
-          <a href='mailto:info@sirconsultant.com' rel="noopener noreferrer" className="hidden sm:block">
-            ✉️ info@sirconsultatant.com
+          <a href='mailto:info@sirconsultant.com' rel="noopener noreferrer" className="hidden sm:flex flex-1 items-center gap-2 justify-end text-gray-200 hover:text-white transition-colors">
+            <FaEnvelope className="text-white" /> info@sirconsultant.com
           </a>
         </ul>
       </div>
@@ -41,9 +42,9 @@ const Nav = () => {
       {/* Main Navbar */}
       <nav className="bg-indigo-400 flex items-center justify-between px-4 sm:px-6 h-12 shadow-md relative">
         {/* Logo */}
-        <div className="text-white font-bold text-xl flex-shrink-0">
+        <Link to="/" className="text-white font-bold text-xl flex-shrink-0 cursor-pointer">
           SIR CONSULTANT
-        </div>
+        </Link>
 
         {/* Hamburger button for mobile */}
         <button

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Air from './Air'
 import { Link } from 'react-router-dom'
 import { supabase } from '../../../lib/supabaseClient'
+import { motion } from 'framer-motion'
 import pass1 from '../../../assets/imgs/pass1.jpg'
 import pass2 from '../../../assets/imgs/pass2.jpg'
 import pass3 from '../../../assets/imgs/pass3.jpg'
@@ -49,7 +50,7 @@ const About = () => {
   }
 
   return (
-    <>
+    <div className="overflow-x-hidden w-full pb-10">
       {/* Heading */}
       <h1 className='hidden md:block ml-[44%] font-bold text-3xl text-blue-950 mt-2'>About Us</h1>
       <h1 className='md:hidden text-center font-bold text-3xl text-blue-950 mt-4'>About Us</h1>
@@ -105,10 +106,18 @@ const About = () => {
       <Air />
 
       {/* Gallery Grid: Responsive, uniform card layout */}
-<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8 mb-8 px-4'>
+<div className='max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-12 mb-16 px-6 lg:px-8'>
   {/* Render default gallery images first */}
-  {defaultGalleryImages.map((img) => (
-    <div key={img.id} className="w-full bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+  {defaultGalleryImages.map((img, index) => (
+    <motion.div 
+      key={img.id}
+      initial={{ opacity: 0, y: 50, rotateX: -15, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+      whileHover={{ scale: 1.05, y: -10, boxShadow: "0px 20px 30px rgba(0,0,0,0.15)" }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
+      className="w-full bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer"
+    >
       <div className="w-full aspect-[4/3] overflow-hidden">
         <img
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
@@ -121,11 +130,19 @@ const About = () => {
           <h3 className='text-base text-blue-950 font-semibold text-center'>{img.country}</h3>
         </div>
       )}
-    </div>
+    </motion.div>
   ))}
   {/* Then render admin-added dynamic images */}
-  {galleryImages.map((img) => (
-    <div key={img.id} className="w-full bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+  {galleryImages.map((img, index) => (
+    <motion.div 
+      key={img.id}
+      initial={{ opacity: 0, y: 50, rotateX: -15, scale: 0.95 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+      whileHover={{ scale: 1.05, y: -10, boxShadow: "0px 20px 30px rgba(0,0,0,0.15)" }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: index * 0.1, type: "spring", stiffness: 100 }}
+      className="w-full bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer"
+    >
       <div className="w-full aspect-[4/3] overflow-hidden">
         <img
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
@@ -138,11 +155,11 @@ const About = () => {
           <h3 className='text-base text-blue-950 font-semibold text-center'>{img.country}</h3>
         </div>
       )}
-    </div>
+    </motion.div>
   ))}
 </div>
 
-    </>
+    </div>
   )
 }
 
